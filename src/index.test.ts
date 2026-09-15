@@ -14,7 +14,7 @@ import {
   test,
   vi,
 } from "vitest";
-import remarkLinkCard from "./index";
+import remarkLinkCard from "./index.js";
 
 vi.mock("open-graph-scraper", () => {
   return {
