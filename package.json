@@ -14,8 +14,7 @@
     "check:fix": "biome check --write --unsafe ./src",
     "check:ci": "biome ci ./src",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm run build",
-    "prepare": "pnpm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
