@@ -26,18 +26,19 @@ remark-link-card-plus is a [remark](https://github.com/remarkjs/remark) plugin t
 ### Development Commands
 
 ```bash
-npm run build       # Build with TypeScript (tsconfig.build.json)
-npm run dev         # Watch mode for development
-npm test            # Run tests with vitest
-npm run check       # Lint with Biome
-npm run check:fix   # Auto-fix lint issues
-npm run typecheck   # Type check without emitting
+pnpm install         # Install dependencies (pnpm is required; see packageManager in package.json)
+pnpm run build       # Build with TypeScript (tsconfig.build.json)
+pnpm run dev         # Watch mode for development
+pnpm test            # Run tests with vitest
+pnpm run check       # Lint with Biome
+pnpm run check:fix   # Auto-fix lint issues
+pnpm run typecheck   # Type check without emitting
 ```
 
 To run a single test:
 
 ```bash
-npx vitest run -t "test name pattern"
+pnpm exec vitest run -t "test name pattern"
 ```
 
 ### Architecture

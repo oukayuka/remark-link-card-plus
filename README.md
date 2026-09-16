@@ -36,6 +36,8 @@ You can see it (original version) in action on the [demo page](https://remark-li
 
 ## Install
 
+Node.js 22.13.0 or later is required.
+
 ```sh
 npm i remark-link-card-plus
 ```

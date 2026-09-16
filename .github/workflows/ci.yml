@@ -12,24 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20, 22, 24]
+        node-version: ["22.13.0", "24", "26"]
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up pnpm and Node.js
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-      - uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
-        id: node_modules_cache_id
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
-        name: Install npm packages
-        run: npm install
-      - name: Run Test
-        run: npm run test
-      - name: Run Lint and Formatter
-        run: npm run check:ci
+          runtime: node@${{ matrix.node-version }}
+          cache: true
+          require-lockfile: true
+      - parallel:
+          - name: Build
+            run: pnpm run build
+          - name: Run Test
+            run: pnpm run test
+          - name: Run Lint and Formatter
+            run: pnpm run check:ci
